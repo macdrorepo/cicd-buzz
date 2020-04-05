@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 docker login -u $DOCKER_USER -p $DOCKER_PASS
 
@@ -8,5 +8,7 @@ else
     TAG="$TRAVIS_BRANCH"
 fi
 
-docker build -f Dockerfile -t $DOCKER_USER/$TAG .
-docker push $DOCKER_USER:$TAG
+REGISTRY="hub.docker.com"
+
+docker build -f Dockerfile -t ${REGISTRY}/${IMAGE_NAME}:${TAG}
+docker push ${REGISTRY}/${IMAGE_NAME}
