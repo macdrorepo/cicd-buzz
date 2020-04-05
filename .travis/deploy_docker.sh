@@ -8,5 +8,7 @@ else
     TAG="$TRAVIS_BRANCH"
 fi
 
-docker build -f Dockerfile -t ${DOCKER_USER}/${REPO_NAME}:${TAG}
+DOCKER_USER=madrag
+
+docker build -f Dockerfile -t ${DOCKER_USER}/${REPO_NAME}:${TAG} .
 docker push ${DOCKER_USER}/${REPO_NAME}
