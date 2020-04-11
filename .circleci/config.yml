@@ -1,0 +1,20 @@
+version: 2.1
+jobs:
+  run_tests:
+    docker:
+      - image: circleci/python3.7.4
+    steps:
+      - checkout # git clone from source repository
+      - run:
+          name: Install python dependencies
+          command: |
+            echo "export PATH=~$PATH:~/.lcal/bin" >> $BASH_ENV && source $BASH_ENV
+            pip install --user -r requirements.txt
+      - run:
+          name: Run unit test
+          command: |
+            python -m pytest -v --junitxml=test-reports/junit.xml --html=test-reports/pytest_report.html --self-contained-html
+            
+
+
+
